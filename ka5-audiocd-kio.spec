@@ -1,14 +1,14 @@
-%define		kdeappsver	18.12.0
+%define		kdeappsver	18.12.1
 %define		qtver		5.9.0
 %define		kaname		audiocd-kio
 Summary:	Audio CD kio
 Name:		ka5-%{kaname}
-Version:	18.12.0
+Version:	18.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	840158e14b1da7c17a652e645fe4b7ed
+# Source0-md5:	c642fe85d40d29e177cbbe2e64f0321d
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -24,6 +24,7 @@ BuildRequires:	kf5-kconfig-devel >= 5.24.0
 BuildRequires:	kf5-kdoctools-devel >= 5.24.0
 BuildRequires:	kf5-ki18n-devel >= 5.24.0
 BuildRequires:	kf5-kio-devel >= 5.24.0
+BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -53,14 +54,14 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 install -d build
 cd build
 %cmake \
+	-G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kaname} --all-name --with-kde
 
@@ -79,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_lame.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_vorbis.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_wav.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/libkcm_audiocd.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_audiocd.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libkio_audiocd.so
 %{_datadir}/config.kcfg/audiocd_flac_encoder.kcfg
 %{_datadir}/config.kcfg/audiocd_lame_encoder.kcfg
