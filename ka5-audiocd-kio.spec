@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.08.2
+%define		kdeappsver	22.08.3
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		audiocd-kio
 Summary:	Audio CD kio
 Name:		ka5-%{kaname}
-Version:	22.08.2
+Version:	22.08.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	94d8e0b14df7b8895a8dfb61f3efac28
+# Source0-md5:	fd5664bb164ce91f843624630e745493
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
