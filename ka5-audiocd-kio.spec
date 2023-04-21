@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		audiocd-kio
 Summary:	Audio CD kio
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	2
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	db4dd39aa0904edfe8c728cde53fdced
+# Source0-md5:	f2506be0a96b492d95732ea8a4210546
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -91,7 +91,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_lame.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_vorbis.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_wav.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_audiocd.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/audiocd.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/libaudiocd_encoder_opus.so
 %{_datadir}/config.kcfg/audiocd_flac_encoder.kcfg
@@ -99,14 +98,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/audiocd_opus_encoder.kcfg
 %{_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
 %{_datadir}/konqsidebartng/virtual_folders/services/audiocd.desktop
-%{_datadir}/kservices5/audiocd.desktop
 %{_datadir}/solid/actions/solid_audiocd.desktop
 %{_datadir}/qlogging-categories5/kio_audiocd.categories
 %{_datadir}/metainfo/org.kde.kio_audiocd.metainfo.xml
 %{_datadir}/qlogging-categories5/kio_audiocd.renamecategories
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_audiocd.so
+%{_desktopdir}/kcm_audiocd.desktop
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/audiocdencoder.h
-%{_includedir}/audiocdplugins_export.h
 %{_libdir}/libaudiocdplugins.so
+%{_includedir}/audiocdplugins
